@@ -16,7 +16,7 @@ add your ID and bot type you need
 
 then you well get a link like that:
 
-`https://domain/bot/make.php?token=5844:ajh_uwj774jsj&sudo=826926595&type=visa`
+`https://domain.com/bot/make.php?token=5844:ajh_uwj774jsj&sudo=826926595&type=visa`
 
 and put it in your browser and look at the details it right or not if ,right wait 10s the site well redrict you to telegram webhook,
  else if it's wrong close the page and start again
