@@ -30,6 +30,10 @@ and put it in your browser and look at the details it right or not if ,right wai
 4. upload the project in folder and name it *bot* or edit in `make.php`
 5. the bots it's not my program !!!
 
+# more info
+1. bot files well be added to *lbots* folder
+2. *srsc* folder it's for bot files
+
 # contact 
 TELEGRAM: http://t.me/laganty
 
