@@ -1,0 +1,64 @@
+
+ob_start();
+$API_KEY = "[%token%]";
+define('API_KEY',$API_KEY);
+function bot($method,$datas=[]){
+$url = "https://api.telegram.org/bot".API_KEY."/".$method."?".http_build_query($datas);
+return json_decode(file_get_contents($url));
+}
+$update = json_decode(file_get_contents('php://input'));
+$message = $update->message;
+$text = $message->text;
+$chat_id = $message->chat->id;
+$name = $message->from->first_name;
+$id = $message->from->id;
+$SAIED20 = json_decode(file_get_contents('php://input'));
+$SAIED18 = $update->message;
+$SAIED13 = $SAIED18->chat->id;
+$SAIED17 = $SAIED18->text;
+$SAIED19 = $SAIED20->callback_query->data;
+$SAIED12 = $SAIED20->callback_query->message->chat->id;
+$SAIED14 =  $SAIED20->callback_query->message->message_id;
+$SAIED15 = $SAIED18->from->first_name;
+$SAIED16 = $SAIED18->from->username;
+$SAIED11 = $SAIED18->from->id;
+$SAIED3 = count($SAIED2)-1;
+$SAIED9 = file_get_contents("https://api.telegram.org/bot".API_KEY."/getChatMember?chat_id=$SAIED0&user_id=".$SAIED11);
+$SAIED10 = file_get_contents("https://api.telegram.org/bot".API_KEY."/getChatMember?chat_id=$SAIED1&user_id=".$SAIED11);
+if($SAIED18 && (strpos($SAIED9,'"status":"left"') or strpos($SAIED9,'"Bad Request: USER_ID_INVALID"') or strpos($SAIED9,'"status":"kicked"') or strpos($SAIED10,'"status":"left"') or strpos($SAIED10,'"Bad Request: USER_ID_INVALID"') or strpos($SAIED10,'"status":"kicked"'))!== false){
+bot('sendMessage', [
+'chat_id'=>$SAIED13,
+'text'=>'- اشترك في قنوات البوت أولا لتتمكن من إستخدامه 🤖".
+
+'.$SAIED0.'
+'.$SAIED1,
+]);return false;}
+
+if($text == "/start"){
+bot('Sendmessage',[
+'chat_id'=>$chat_id,
+'text'=>'- أهلا بك يا ['.$name.'](tg://user?id='.$id.') 🍃❤".
+
+- اختصاص البوت فحص بطاقات ال Visa و ال Mastercard وجلب معلوماتها 🌿🎫".
+
+- فقط كل ما عليك هو ارسال رقم البطاقة وسيتم فحصها 🍀🎟".',
+'parse_mode'=>"MarkDown",
+'reply_to_message_id'=>$message->message_id
+]);
+}
+if($text != "/start" and $text != "/admin"){
+$info = json_decode(file_get_contents("https://lookup.binlist.net/$text"));
+$bin = str_replace("{}",'"'.$text.'"',json_encode($info,128|64|256));
+if($bin != "null"){
+bot('Sendmessage',['chat_id'=>$chat_id,
+'text'=>$bin,
+'reply_to_message_id'=>$message->message_id
+]);
+}
+if($bin == "null"){
+bot('Sendmessage',['chat_id'=>$chat_id,
+'text'=>'- يرجى وضع رقم بطاقة صحيحة ⚠️".',
+'reply_to_message_id'=>$message->message_id
+]);
+}}
+
